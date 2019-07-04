@@ -48,3 +48,52 @@ So with that in mind, what are my initial thoughts for how to represent this stu
 ### Zeno
 
 - This one scares me a little bit because I doubt I'm going to be able to come up with any particularly deep representation of the idea of a kind of fractal space? As simple as just allowing them to get half-way there? Or a sequence of rooms in which the flag gets "further away"? I'm really unsure of how to make this one work actually, maybe it's the hardest one?
+
+---
+
+# Avatar, sprites, items, oh my :(, Be the boulder you want to see in the world?, Separate Bitsies?, Menu?, Extensions? (Thursday, 4 July 2019, 14:36PM)
+
+Hi there, just reporting in after my initial foray into actually doing stuff in Bitsy. Specifically I wanted to clarify that I understood the relationships between items, sprites, the avatar, and exits.
+
+## Avatar, sprites, items, oh my :(
+
+It turns out to be more frustrating than expected, especially for someone who wants to make something cyclical. As per my previous commit message
+
+- Items can be placed multiply but if you pick one up it's gone for good (across rooms during a playing), so to they're very temporary but have an irritating permanence when they're gone, which makes them a bit useless for anything you want to happen more than once
+- Sprites can only exist in one place (across rooms during a playing), so they're "stable" and can be returned to, but can't move or vanish. And as far as I can tell no trickery available in terms of triggering a room shift on examining/interacting with a sprite.
+
+The result of this is that I suspect I'm going to have to think significantly differently about how to represent these myths. In particular, my cute idea of "picking up" the boulder as an item and transporting it to the top isn't going to work, because when you return to the bottom the item will be gone.
+
+In fact at least initially I have felt quite defeated by it. If the boulder is an item, it vanishes and can't be repeated. If the boulder is a sprite it can't move and I'd be limited to something horrendous like an "animation" room by room of "pushing" it up the hill. Which I guess is fine, but just feels like you're fighting what Bitsy is good at. There's something to that (consider that moth game I played that did some cool animation effects), but I'm wanting to mostly explore how to "express" the myths through this engine, not bend it totally to my will.
+
+## Be the boulder you want to see in the world?
+
+In my despair I did think that perhaps an approach to Sisyphus is to make the avatar the boulder. This is quite satisfying in that it collapses the myth in a way that seems videogame-y. An alternative would be to try to represent Sisyphus+Boulder in a single tile, but that would be impossible given the tile size. And one reading of boulder-as-avatar is that then the player is very specifically Sisyphus, "pushing" the boulder uphill with the keys?
+
+This would allow the requisite looping behaviour because you'd go to the top and hit a hidden exit that drops you back at the bottom. This would require you to know that it had happened though, so there would need to be some distinguishing features that differentiate it all. Probably want to just represent the whole myth on a single screen?
+
+## Separate Bitsies?
+
+This would also more or less require each myth to be a separate Bitsy rather than doing them all within a single one which is a shame. Interesting that the nature of the engine, though, perhaps kills the idea of an avatar performing multiple different kinds of tasks? I guess the set of verbs and objects just can't encompass it. And perhaps most of all because movement is the most powerful (almost only) agency in a Bitsy game and so you do need to hold it back for specific actions and not just wandering around.
+
+One nice thing about needing to use separate Bitsies per myth is that it would allow a return to the colour schemes of the different levels, so that would be something.
+
+## Menu?
+
+How would I link them all together I wonder? Just an HTML page with links? Seems a shame, but if that's how it is then that's how it is.
+
+## Extensions?
+
+Looking through the list of bitsy extensions at https://github.com/seleb/bitsy-hacks I see some possibilities to overcome certain issues. Notably
+
+- I see you can execute JS from a dialog which could suffice for creating a Bitsy that is the menu linking to the other Bitsies
+- More extreme I see you can do things like have a sprite follow an avatar which could provide a model for Sisyphus pushing a boulder
+- I also see you can change the avatar in different rooms, which would potentially put me back in position to be able to produce all the game in one Bitsy (because you can have distinct palettes per room, so I wouldn't be losing out on that).
+
+The question with all of these is whether using hacks like this devalues the overall experiment in using what Bitsy provides in order to be able to produce the myths. The menu I think I can get away with, but is having a singular avatar just a part of Bitsy I shouldn't be opting out of?
+
+This is a bit of a challenging question, pretty philosophical.
+
+I _think_ my feelings here are that I should be using default Bitsy as much as possible in order to treat it as the language/material of expression for the project. The more I tweak it the less case I suppose I have for talking about (and experiencing) the limitations set by such an approach.
+
+As such I imagine allowing myself to use JS dialog in order to create a menu more in-keeping with the experience (and not intruding into the myths themselves) but otherwise staying vanilla.
