@@ -20,6 +20,12 @@ PAL 0
 128,159,255
 255,255,255
 
+PAL 1
+NAME room_2_test
+238,1,255
+255,37,2
+255,255,255
+
 ROOM 0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -32,12 +38,13 @@ ROOM 0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,a,a,a,a,a,a,a,a
+0,0,0,0,0,0,a,a,a,a,a,a,a,a,a,a
+0,0,0,0,a,a,a,a,a,a,a,a,a,a,a,a
+0,0,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
 NAME experimental_room_1
+ITM 0 8,9
 EXT 9,9 1 10,8
 PAL 0
 
@@ -59,18 +66,21 @@ ROOM 1
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 NAME experimental_room_2
+ITM 0 9,8
 EXT 10,8 0 9,9
-PAL 0
+PAL 1
 
 TIL a
 11111111
-10000001
-10000001
-10011001
-10011001
-10000001
-10000001
 11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+NAME wall
+WAL true
 
 SPR A
 00111100
@@ -81,8 +91,7 @@ SPR A
 10111101
 10100101
 00100100
-POS 0 7,9
-ITM 0 2
+POS 0 5,8
 
 SPR a
 00000000
@@ -110,7 +119,7 @@ NAME item_boulder
 DLG ITM_0
 
 DLG SPR_0
-There is only one of me in the whole game.
+Poof like magic you are transported to the world of my website (js "window.open('https://www.pippinbarr.com/','_blank')")
 
 DLG ITM_0
 I can be picked up and there can be more than one of me.
@@ -200,7 +209,7 @@ function hexColorDistance(hex1,hex2) {
 // source : http://axonflux.com/handy-rgb-to-hsl-and-rgb-to-hsv-color-model-c
 /* accepts parameters
  * h  Object = {h:x, s:y, v:z}
- * OR 
+ * OR
  * h, s, v
 */
 function HSVtoRGB(h, s, v) {
@@ -230,7 +239,7 @@ function HSVtoRGB(h, s, v) {
 
 /* accepts parameters
  * r  Object = {r:x, g:y, b:z}
- * OR 
+ * OR
  * r, g, b
 */
 function RGBtoHSV(r, g, b) {
@@ -920,7 +929,7 @@ function Font(fontData) {
 
 					curCharLineCount = 0;
 					curCharCode = parseInt(args[1]);
-					chardata[curCharCode] = { 
+					chardata[curCharCode] = {
 						width: width,
 						height: height,
 						offset: {
@@ -977,7 +986,7 @@ function Font(fontData) {
 		}
 
 		// init invalid character box
-		invalidCharData = { 
+		invalidCharData = {
 			width: width,
 			height: height,
 			offset: {
@@ -1785,7 +1794,7 @@ var ExpNode = function(operator, left, right) {
 	this.Eval = function(environment,onReturn) {
 		// console.log("EVAL " + this.operator);
 		var self = this; // hack to deal with scope
-		environment.EvalOperator( this.operator, this.left, this.right, 
+		environment.EvalOperator( this.operator, this.left, this.right,
 			function(val){
 				// console.log("EVAL EXP " + self.operator + " " + val);
 				onReturn(val);
@@ -1914,7 +1923,7 @@ var ShuffleNode = function(options) {
 		// this.options[index].Eval( environment, onReturn );
 
 		optionsShuffled[index].Eval( environment, onReturn );
-		
+
 		index++;
 		if (index >= this.options.length) {
 			shuffle(this.options);
@@ -2664,7 +2673,7 @@ var Parser = function(env) {
 
 		var codeState = new ParserState( new BlockNode(BlockMode.Code), codeStr );
 		codeState = ParseCode( codeState );
-		
+
 		state.curNode.AddChild( codeState.rootNode );
 
 		return state;
@@ -2846,7 +2855,7 @@ var DialogRenderer = function() {
 
 			}
 		}
-		
+
 		// call printHandler for character
 		char.OnPrint();
 	};
@@ -3259,7 +3268,7 @@ var DialogBuffer = function() {
 		if( lastPage.length == 0 )
 			buffer.splice( buffer.length-1, 1 );
 
-		//finish up 
+		//finish up
 		lastPage = buffer[ buffer.length-1 ];
 		lastRow = lastPage[ lastPage.length-1 ];
 		if( lastRow.length > 0 ) {
@@ -3325,48 +3334,48 @@ var ArabicHandler = function() {
 	// map glyphs to their character forms
 	var glyphForms = {
 		/*		 Isolated, Final, Initial, Middle Forms	*/
-		0x0621: [0xFE80,0xFE80,0xFE80,0xFE80], /*  HAMZA  */ 
-		0x0622: [0xFE81,0xFE82,0xFE81,0xFE82], /*  ALEF WITH MADDA ABOVE  */ 
-		0x0623: [0xFE83,0xFE84,0xFE83,0xFE84], /*  ALEF WITH HAMZA ABOVE  */ 
-		0x0624: [0xFE85,0xFE86,0xFE85,0xFE86], /*  WAW WITH HAMZA ABOVE  */ 
-		0x0625: [0xFE87,0xFE88,0xFE87,0xFE88], /*  ALEF WITH HAMZA BELOW  */ 
-		0x0626: [0xFE89,0xFE8A,0xFE8B,0xFE8C], /*  YEH WITH HAMZA ABOVE  */ 
-		0x0627: [0xFE8D,0xFE8E,0xFE8D,0xFE8E], /*  ALEF  */ 
-		0x0628: [0xFE8F,0xFE90,0xFE91,0xFE92], /*  BEH  */ 
-		0x0629: [0xFE93,0xFE94,0xFE93,0xFE94], /*  TEH MARBUTA  */ 
-		0x062A: [0xFE95,0xFE96,0xFE97,0xFE98], /*  TEH  */ 
-		0x062B: [0xFE99,0xFE9A,0xFE9B,0xFE9C], /*  THEH  */ 
-		0x062C: [0xFE9D,0xFE9E,0xFE9F,0xFEA0], /*  JEEM  */ 
-		0x062D: [0xFEA1,0xFEA2,0xFEA3,0xFEA4], /*  HAH  */ 
-		0x062E: [0xFEA5,0xFEA6,0xFEA7,0xFEA8], /*  KHAH  */ 
-		0x062F: [0xFEA9,0xFEAA,0xFEA9,0xFEAA], /*  DAL  */ 
-		0x0630: [0xFEAB,0xFEAC,0xFEAB,0xFEAC], /*  THAL */ 
-		0x0631: [0xFEAD,0xFEAE,0xFEAD,0xFEAE], /*  RAA  */ 
-		0x0632: [0xFEAF,0xFEB0,0xFEAF,0xFEB0], /*  ZAIN  */ 
-		0x0633: [0xFEB1,0xFEB2,0xFEB3,0xFEB4], /*  SEEN  */ 
-		0x0634: [0xFEB5,0xFEB6,0xFEB7,0xFEB8], /*  SHEEN  */ 
-		0x0635: [0xFEB9,0xFEBA,0xFEBB,0xFEBC], /*  SAD  */ 
-		0x0636: [0xFEBD,0xFEBE,0xFEBF,0xFEC0], /*  DAD  */ 
-		0x0637: [0xFEC1,0xFEC2,0xFEC3,0xFEC4], /*  TAH  */ 
-		0x0638: [0xFEC5,0xFEC6,0xFEC7,0xFEC8], /*  ZAH  */ 
-		0x0639: [0xFEC9,0xFECA,0xFECB,0xFECC], /*  AIN  */ 
-		0x063A: [0xFECD,0xFECE,0xFECF,0xFED0], /*  GHAIN  */ 
+		0x0621: [0xFE80,0xFE80,0xFE80,0xFE80], /*  HAMZA  */
+		0x0622: [0xFE81,0xFE82,0xFE81,0xFE82], /*  ALEF WITH MADDA ABOVE  */
+		0x0623: [0xFE83,0xFE84,0xFE83,0xFE84], /*  ALEF WITH HAMZA ABOVE  */
+		0x0624: [0xFE85,0xFE86,0xFE85,0xFE86], /*  WAW WITH HAMZA ABOVE  */
+		0x0625: [0xFE87,0xFE88,0xFE87,0xFE88], /*  ALEF WITH HAMZA BELOW  */
+		0x0626: [0xFE89,0xFE8A,0xFE8B,0xFE8C], /*  YEH WITH HAMZA ABOVE  */
+		0x0627: [0xFE8D,0xFE8E,0xFE8D,0xFE8E], /*  ALEF  */
+		0x0628: [0xFE8F,0xFE90,0xFE91,0xFE92], /*  BEH  */
+		0x0629: [0xFE93,0xFE94,0xFE93,0xFE94], /*  TEH MARBUTA  */
+		0x062A: [0xFE95,0xFE96,0xFE97,0xFE98], /*  TEH  */
+		0x062B: [0xFE99,0xFE9A,0xFE9B,0xFE9C], /*  THEH  */
+		0x062C: [0xFE9D,0xFE9E,0xFE9F,0xFEA0], /*  JEEM  */
+		0x062D: [0xFEA1,0xFEA2,0xFEA3,0xFEA4], /*  HAH  */
+		0x062E: [0xFEA5,0xFEA6,0xFEA7,0xFEA8], /*  KHAH  */
+		0x062F: [0xFEA9,0xFEAA,0xFEA9,0xFEAA], /*  DAL  */
+		0x0630: [0xFEAB,0xFEAC,0xFEAB,0xFEAC], /*  THAL */
+		0x0631: [0xFEAD,0xFEAE,0xFEAD,0xFEAE], /*  RAA  */
+		0x0632: [0xFEAF,0xFEB0,0xFEAF,0xFEB0], /*  ZAIN  */
+		0x0633: [0xFEB1,0xFEB2,0xFEB3,0xFEB4], /*  SEEN  */
+		0x0634: [0xFEB5,0xFEB6,0xFEB7,0xFEB8], /*  SHEEN  */
+		0x0635: [0xFEB9,0xFEBA,0xFEBB,0xFEBC], /*  SAD  */
+		0x0636: [0xFEBD,0xFEBE,0xFEBF,0xFEC0], /*  DAD  */
+		0x0637: [0xFEC1,0xFEC2,0xFEC3,0xFEC4], /*  TAH  */
+		0x0638: [0xFEC5,0xFEC6,0xFEC7,0xFEC8], /*  ZAH  */
+		0x0639: [0xFEC9,0xFECA,0xFECB,0xFECC], /*  AIN  */
+		0x063A: [0xFECD,0xFECE,0xFECF,0xFED0], /*  GHAIN  */
 		0x063B: [0x0000,0x0000,0x0000,0x0000], /*  space */
 		0x063C: [0x0000,0x0000,0x0000,0x0000], /*  space */
 		0x063D: [0x0000,0x0000,0x0000,0x0000], /*  space */
 		0x063E: [0x0000,0x0000,0x0000,0x0000], /*  space */
 		0x063F: [0x0000,0x0000,0x0000,0x0000], /*  space */
-		0x0640: [0x0640,0x0640,0x0640,0x0640], /*  TATWEEL  */ 
-		0x0641: [0xFED1,0xFED2,0xFED3,0xFED4], /*  FAA  */ 
-		0x0642: [0xFED5,0xFED6,0xFED7,0xFED8], /*  QAF  */ 
-		0x0643: [0xFED9,0xFEDA,0xFEDB,0xFEDC], /*  KAF  */ 
-		0x0644: [0xFEDD,0xFEDE,0xFEDF,0xFEE0], /*  LAM  */ 
-		0x0645: [0xFEE1,0xFEE2,0xFEE3,0xFEE4], /*  MEEM  */ 
-		0x0646: [0xFEE5,0xFEE6,0xFEE7,0xFEE8], /*  NOON  */ 
-		0x0647: [0xFEE9,0xFEEA,0xFEEB,0xFEEC], /*  HEH  */ 
-		0x0648: [0xFEED,0xFEEE,0xFEED,0xFEEE], /*  WAW  */ 
-		0x0649: [0xFEEF,0xFEF0,0xFBE8,0xFBE9], /*  ALEF MAKSURA  */ 
-		0x064A: [0xFEF1,0xFEF2,0xFEF3,0xFEF4], /*  YEH  */ 
+		0x0640: [0x0640,0x0640,0x0640,0x0640], /*  TATWEEL  */
+		0x0641: [0xFED1,0xFED2,0xFED3,0xFED4], /*  FAA  */
+		0x0642: [0xFED5,0xFED6,0xFED7,0xFED8], /*  QAF  */
+		0x0643: [0xFED9,0xFEDA,0xFEDB,0xFEDC], /*  KAF  */
+		0x0644: [0xFEDD,0xFEDE,0xFEDF,0xFEE0], /*  LAM  */
+		0x0645: [0xFEE1,0xFEE2,0xFEE3,0xFEE4], /*  MEEM  */
+		0x0646: [0xFEE5,0xFEE6,0xFEE7,0xFEE8], /*  NOON  */
+		0x0647: [0xFEE9,0xFEEA,0xFEEB,0xFEEC], /*  HEH  */
+		0x0648: [0xFEED,0xFEEE,0xFEED,0xFEEE], /*  WAW  */
+		0x0649: [0xFEEF,0xFEF0,0xFBE8,0xFBE9], /*  ALEF MAKSURA  */
+		0x064A: [0xFEF1,0xFEF2,0xFEF3,0xFEF4], /*  YEH  */
 		0x064B: [0xFEF5,0xFEF6,0xFEF5,0xFEF6], /*  LAM ALEF MADD*/
 		0x064C: [0xFEF7,0xFEF8,0xFEF7,0xFEF8], /*  LAM ALEF HAMZA ABOVE*/
 		0x064D: [0xFEF9,0xFEFa,0xFEF9,0xFEFa], /*  LAM ALEF HAMZA BELOW*/
@@ -3973,7 +3982,7 @@ function onready(startWithTitle) {
 
 	update_interval = setInterval(update,16);
 
-	if(startWithTitle) { // used by editor 
+	if(startWithTitle) { // used by editor
 		startNarrating(title);
 	}
 }
@@ -4714,7 +4723,7 @@ function movePlayer(direction) {
 		player().y += 1;
 		didPlayerMoveThisFrame = true;
 	}
-	
+
 	var ext = getExit( player().room, player().x, player().y );
 	var end = getEnding( player().room, player().x, player().y );
 	// TODO : vNext
@@ -5074,7 +5083,7 @@ function serializeWorld(skipFonts) {
 			// old non-comma separated format
 			for (i in room[id].tilemap) {
 				for (j in room[id].tilemap[i]) {
-					worldStr += room[id].tilemap[i][j];	
+					worldStr += room[id].tilemap[i][j];
 				}
 				worldStr += "\n";
 			}
@@ -5371,7 +5380,7 @@ function parseRoom(lines, i) {
 				};
 			}
 			else if ( flags.ROOM_FORMAT == 0 ) { // TODO: right now this shortcut only works w/ the old comma separate format
-				/* PLACE MULTIPLE SPRITES*/ 
+				/* PLACE MULTIPLE SPRITES*/
 				//Does find and replace in the tilemap (may be hacky, but its convenient)
 				var sprList = sprId.split(",");
 				for (row in room[id].tilemap) {
@@ -8378,6 +8387,366 @@ CHAR 255
 010010
 000000
 000000
+</script>
+
+<script>
+/**
+☕
+@file javascript dialog
+@summary execute arbitrary javascript from dialog
+@license MIT
+@version 3.2.2
+@requires Bitsy Version: 4.5, 4.6
+@author Sean S. LeBlanc
+@description
+Lets you execute arbitrary JavaScript from dialog (including inside conditionals).
+If you're familiar with the Bitsy source, this will let you write one-shot hacks
+for a wide variety of situations.
+Usage:
+	(js "<JavaScript code to evaluate after dialog is closed>")
+	(jsNow "<JavaScript code to evaluate immediately>")
+Examples:
+	move a sprite:
+	(js "sprite['a'].x = 10;")
+	edit palette colour:
+	(js "getPal(curPal())[0] = [255,0,0];renderImages();")
+	place an item next to player:
+	(js "room[curRoom].items.push({id:'0',x:player().x+1,y:player().y});")
+	verbose facimile of exit-from-dialog:
+	(js "var _onExitDialog=onExitDialog;onExitDialog=function(){player().room=curRoom='3';_onExitDialog.apply(this,arguments);onExitDialog=_onExitDialog;};")
+HOW TO USE:
+1. Copy-paste into a script tag after the bitsy source
+2. Add (js "<code>") to your dialog as needed
+NOTE: This uses parentheses "()" instead of curly braces "{}" around function
+      calls because the Bitsy editor's fancy dialog window strips unrecognized
+      curly-brace functions from dialog text. To keep from losing data, write
+      these function calls with parentheses like the examples above.
+      For full editor integration, you'd *probably* also need to paste this
+      code at the end of the editor's `bitsy.js` file. Untested.
+*/
+this.hacks = this.hacks || {};
+(function (bitsy) {
+'use strict';
+
+bitsy = bitsy && bitsy.hasOwnProperty('default') ? bitsy['default'] : bitsy;
+
+/**
+@file utils
+@summary miscellaneous bitsy utilities
+@author Sean S. LeBlanc
+*/
+
+/*
+Helper used to replace code in a script tag based on a search regex
+To inject code without erasing original string, using capturing groups; e.g.
+	inject(/(some string)/,'injected before $1 injected after')
+*/
+function inject(searchRegex, replaceString) {
+	// find the relevant script tag
+	var scriptTags = document.getElementsByTagName('script');
+	var scriptTag;
+	var code;
+	for (var i = 0; i < scriptTags.length; ++i) {
+		scriptTag = scriptTags[i];
+		var matchesSearch = scriptTag.textContent.search(searchRegex) !== -1;
+		var isCurrentScript = scriptTag === document.currentScript;
+		if (matchesSearch && !isCurrentScript) {
+			code = scriptTag.textContent;
+			break;
+		}
+	}
+
+	// error-handling
+	if (!code) {
+		throw 'Couldn\'t find "' + searchRegex + '" in script tags';
+	}
+
+	// modify the content
+	code = code.replace(searchRegex, replaceString);
+
+	// replace the old script tag with a new one using our modified code
+	var newScriptTag = document.createElement('script');
+	newScriptTag.textContent = code;
+	scriptTag.insertAdjacentElement('afterend', newScriptTag);
+	scriptTag.remove();
+}
+
+/**
+ * Helper for getting an array with unique elements
+ * @param  {Array} array Original array
+ * @return {Array}       Copy of array, excluding duplicates
+ */
+function unique(array) {
+	return array.filter(function (item, idx) {
+		return array.indexOf(item) === idx;
+	});
+}
+
+/**
+@file kitsy-script-toolkit
+@summary makes it easier and cleaner to run code before and after Bitsy functions or to inject new code into Bitsy script tags
+@license WTFPL (do WTF you want)
+@version 4.0.0
+@requires Bitsy Version: 4.5, 4.6
+@author @mildmojo
+@description
+HOW TO USE:
+  import {before, after, inject, addDialogTag, addDeferredDialogTag} from "./helpers/kitsy-script-toolkit";
+  before(targetFuncName, beforeFn);
+  after(targetFuncName, afterFn);
+  inject(searchRegex, replaceString);
+  addDialogTag(tagName, dialogFn);
+  addDeferredDialogTag(tagName, dialogFn);
+  For more info, see the documentation at:
+  https://github.com/seleb/bitsy-hacks/wiki/Coding-with-kitsy
+*/
+
+
+// Ex: inject(/(names.sprite.set\( name, id \);)/, '$1console.dir(names)');
+function inject$1(searchRegex, replaceString) {
+	var kitsy = kitsyInit();
+	kitsy.queuedInjectScripts.push({
+		searchRegex: searchRegex,
+		replaceString: replaceString
+	});
+}
+
+// Ex: before('load_game', function run() { alert('Loading!'); });
+//     before('show_text', function run(text) { return text.toUpperCase(); });
+//     before('show_text', function run(text, done) { done(text.toUpperCase()); });
+function before(targetFuncName, beforeFn) {
+	var kitsy = kitsyInit();
+	kitsy.queuedBeforeScripts[targetFuncName] = kitsy.queuedBeforeScripts[targetFuncName] || [];
+	kitsy.queuedBeforeScripts[targetFuncName].push(beforeFn);
+}
+
+// Ex: after('load_game', function run() { alert('Loaded!'); });
+function after(targetFuncName, afterFn) {
+	var kitsy = kitsyInit();
+	kitsy.queuedAfterScripts[targetFuncName] = kitsy.queuedAfterScripts[targetFuncName] || [];
+	kitsy.queuedAfterScripts[targetFuncName].push(afterFn);
+}
+
+function kitsyInit() {
+	// return already-initialized kitsy
+	if (bitsy.kitsy) {
+		return bitsy.kitsy;
+	}
+
+	// Initialize kitsy
+	bitsy.kitsy = {
+		queuedInjectScripts: [],
+		queuedBeforeScripts: {},
+		queuedAfterScripts: {}
+	};
+
+	var oldStartFunc = bitsy.startExportedGame;
+	bitsy.startExportedGame = function doAllInjections() {
+		// Only do this once.
+		bitsy.startExportedGame = oldStartFunc;
+
+		// Rewrite scripts and hook everything up.
+		doInjects();
+		applyAllHooks();
+
+		// Start the game
+		bitsy.startExportedGame.apply(this, arguments);
+	};
+
+	return bitsy.kitsy;
+}
+
+
+function doInjects() {
+	bitsy.kitsy.queuedInjectScripts.forEach(function (injectScript) {
+		inject(injectScript.searchRegex, injectScript.replaceString);
+	});
+	_reinitEngine();
+}
+
+function applyAllHooks() {
+	var allHooks = unique(Object.keys(bitsy.kitsy.queuedBeforeScripts).concat(Object.keys(bitsy.kitsy.queuedAfterScripts)));
+	allHooks.forEach(applyHook);
+}
+
+function applyHook(functionName) {
+	var functionNameSegments = functionName.split('.');
+	var obj = bitsy;
+	while (functionNameSegments.length > 1) {
+		obj = obj[functionNameSegments.shift()];
+	}
+	var lastSegment = functionNameSegments[0];
+	var superFn = obj[lastSegment];
+	var superFnLength = superFn ? superFn.length : 0;
+	var functions = [];
+	// start with befores
+	functions = functions.concat(bitsy.kitsy.queuedBeforeScripts[functionName] || []);
+	// then original
+	if (superFn) {
+		functions.push(superFn);
+	}
+	// then afters
+	functions = functions.concat(bitsy.kitsy.queuedAfterScripts[functionName] || []);
+
+	// overwrite original with one which will call each in order
+	obj[lastSegment] = function () {
+		var returnVal;
+		var args;
+		var i = 0;
+
+		function runBefore() {
+			// All outta functions? Finish
+			if (i === functions.length) {
+				return returnVal;
+			}
+
+			// Update args if provided.
+			if (arguments.length > 0) {
+				args = [].slice.call(arguments);
+			}
+
+			if (functions[i].length > superFnLength) {
+				// Assume funcs that accept more args than the original are
+				// async and accept a callback as an additional argument.
+				return functions[i++].apply(this, args.concat(runBefore.bind(this)));
+			} else {
+				// run synchronously
+				returnVal = functions[i++].apply(this, args);
+				if (returnVal && returnVal.length) {
+					args = returnVal;
+				}
+				return runBefore.apply(this, args);
+			}
+		}
+
+		return runBefore.apply(this, arguments);
+	};
+}
+
+function _reinitEngine() {
+	// recreate the script and dialog objects so that they'll be
+	// referencing the code with injections instead of the original
+	bitsy.scriptModule = new bitsy.Script();
+	bitsy.scriptInterpreter = bitsy.scriptModule.CreateInterpreter();
+
+	bitsy.dialogModule = new bitsy.Dialog();
+	bitsy.dialogRenderer = bitsy.dialogModule.CreateRenderer();
+	bitsy.dialogBuffer = bitsy.dialogModule.CreateBuffer();
+}
+
+// Rewrite custom functions' parentheses to curly braces for Bitsy's
+// interpreter. Unescape escaped parentheticals, too.
+function convertDialogTags(input, tag) {
+	return input
+		.replace(new RegExp('\\\\?\\((' + tag + '(\\s+(".+?"|.+?))?)\\\\?\\)', 'g'), function(match, group){
+			if(match.substr(0,1) === '\\') {
+				return '('+ group + ')'; // Rewrite \(tag "..."|...\) to (tag "..."|...)
+			}
+			return '{'+ group + '}'; // Rewrite (tag "..."|...) to {tag "..."|...}
+		});
+}
+
+
+function addDialogFunction(tag, fn) {
+	var kitsy = kitsyInit();
+	kitsy.dialogFunctions = kitsy.dialogFunctions || {};
+	if (kitsy.dialogFunctions[tag]) {
+		throw new Error('The dialog function "' + tag + '" already exists.');
+	}
+
+	// Hook into game load and rewrite custom functions in game data to Bitsy format.
+	before('parseWorld', function (game_data) {
+		return [convertDialogTags(game_data, tag)];
+	});
+
+	kitsy.dialogFunctions[tag] = fn;
+}
+
+/**
+ * Adds a custom dialog tag which executes the provided function.
+ * For ease-of-use with the bitsy editor, tags can be written as
+ * (tagname "parameters") in addition to the standard {tagname "parameters"}
+ *
+ * Function is executed immediately when the tag is reached.
+ *
+ * @param {string}   tag Name of tag
+ * @param {Function} fn  Function to execute, with signature `function(environment, parameters, onReturn){}`
+ *                       environment: provides access to SetVariable/GetVariable (among other things, see Environment in the bitsy source for more info)
+ *                       parameters: array containing parameters as string in first element (i.e. `parameters[0]`)
+ *                       onReturn: function to call with return value (just call `onReturn(null);` at the end of your function if your tag doesn't interact with the logic system)
+ */
+function addDialogTag(tag, fn) {
+	addDialogFunction(tag, fn);
+	inject$1(
+		/(var functionMap = new Map\(\);)/,
+		'$1functionMap.set("' + tag + '", kitsy.dialogFunctions.' + tag + ');'
+	);
+}
+
+/**
+ * Adds a custom dialog tag which executes the provided function.
+ * For ease-of-use with the bitsy editor, tags can be written as
+ * (tagname "parameters") in addition to the standard {tagname "parameters"}
+ *
+ * Function is executed after the dialog box.
+ *
+ * @param {string}   tag Name of tag
+ * @param {Function} fn  Function to execute, with signature `function(environment, parameters){}`
+ *                       environment: provides access to SetVariable/GetVariable (among other things, see Environment in the bitsy source for more info)
+ *                       parameters: array containing parameters as string in first element (i.e. `parameters[0]`)
+ */
+function addDeferredDialogTag(tag, fn) {
+	addDialogFunction(tag, fn);
+	bitsy.kitsy.deferredDialogFunctions = bitsy.kitsy.deferredDialogFunctions || {};
+	var deferred = bitsy.kitsy.deferredDialogFunctions[tag] = [];
+	inject$1(
+		/(var functionMap = new Map\(\);)/,
+		'$1functionMap.set("' + tag + '", function(e, p, o){ kitsy.deferredDialogFunctions.' + tag + '.push({e:e,p:p}); o(null); });'
+	);
+	// Hook into the dialog finish event and execute the actual function
+	after('onExitDialog', function () {
+		while (deferred.length) {
+			var args = deferred.shift();
+			bitsy.kitsy.dialogFunctions[tag](args.e, args.p, args.o);
+		}
+	});
+	// Hook into the game reset and make sure data gets cleared
+	after('clearGameData', function () {
+		deferred.length = 0;
+	});
+}
+
+/**
+ * Adds two custom dialog tags which execute the provided function,
+ * one with the provided tagname executed after the dialog box,
+ * and one suffixed with 'Now' executed immediately when the tag is reached.
+ *
+ * i.e. helper for the (exit)/(exitNow) pattern.
+ *
+ * @param {string}   tag Name of tag
+ * @param {Function} fn  Function to execute, with signature `function(environment, parameters){}`
+ *                       environment: provides access to SetVariable/GetVariable (among other things, see Environment in the bitsy source for more info)
+ *                       parameters: array containing parameters as string in first element (i.e. `parameters[0]`)
+ */
+function addDualDialogTag(tag, fn) {
+	addDialogTag(tag + 'Now', function(environment, parameters, onReturn) {
+		fn(environment, parameters);
+		onReturn(null);
+	});
+	addDeferredDialogTag(tag, fn);
+}
+
+
+
+var indirectEval$1 = eval;
+
+function executeJs(environment, parameters) {
+	indirectEval$1(parameters[0]);
+}
+
+addDualDialogTag('js', executeJs);
+
+}(window));
 </script>
 
 </head>
