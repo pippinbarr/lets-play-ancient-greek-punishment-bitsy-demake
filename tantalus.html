@@ -6,10 +6,10 @@
 
 <meta charset="UTF-8">
 
-<title>Tantalus (Drink the water, eat the apple.)</title>
+<title>Tantalus (Eat the apple. Drink the water.)</title>
 
 <script type="text/bitsyGameData" id="exportedGameData">
-Tantalus (Drink the water, eat the apple.)
+Tantalus (Eat the apple. Drink the water.)
 
 # BITSY VERSION 6.3
 
@@ -31,12 +31,28 @@ ROOM 0
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+c,c,c,c,c,c,c,0,c,c,c,c,c,c,c,c
 a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
-a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
-a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
-a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
-a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
-a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a
+ITM 0 3,3
+ITM 0 2,8
+ITM 0 12,1
+ITM 0 14,11
+ITM 0 1,11
+ITM 0 7,4
+ITM 1 4,3
+ITM 1 3,8
+ITM 1 2,11
+ITM 1 15,11
+ITM 1 8,4
+ITM 1 13,1
+ITM 1 14,6
+ITM 1 11,9
+ITM 0 10,9
+ITM 0 13,6
 PAL 0
 
 TIL a
@@ -62,16 +78,28 @@ TIL b
 NAME invisible_block
 WAL true
 
+TIL c
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+NAME invisiwall
+WAL true
+
 SPR A
 00111100
-00011000
-00111100
-00011000
-01111110
+10011001
 10111101
-10100101
+10011001
+01111110
+00111100
 00100100
-POS 0 7,9
+00100100
+POS 0 7,15
 
 SPR a
 00000010
@@ -84,25 +112,32 @@ SPR a
 00000000
 NAME apple_sprite
 DLG SPR_0
-POS 0 7,8
+POS 0 7,14
 
 ITM 0
 00000000
+00000111
+01111111
+11111111
+11111111
+11111111
+00111111
+00001111
+NAME cloud1
+
+ITM 1
 00000000
-00011000
-00111100
-00111100
-00011000
-00000000
-00000000
-NAME tea
-DLG ITM_0
+10011110
+11111111
+11111111
+11111111
+11111111
+11110110
+11100000
+NAME cloud2
 
 DLG SPR_0
 The apple is just out of your reach.
-
-DLG ITM_0
-You found a nice warm cup of tea
 
 VAR a
 42
@@ -8367,6 +8402,7 @@ CHAR 255
 010010
 000000
 000000
+</script>
 </script>
 
 </head>
