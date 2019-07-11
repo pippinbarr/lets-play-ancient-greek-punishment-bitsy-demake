@@ -1,6 +1,6 @@
 # Let's Play: Ancient Greek Punishment: Bitsy Demake
 
-_..._
+_The boulder is practically square! The apple is bare recognisable! Yet you push! Yet you reach! Yet you strain! Yet you weep! Punishment knows no minimum resolution!_
 
 #### [Play the current build of _Let's Play: Ancient Greek Punishment: Bitsy Demake_](https://pippinbarr.github.io/lets-play-ancient-greek-punishment-bitsy-demake)
 
