@@ -32,7 +32,8 @@ _Prometheus's rock, before and after_
 
 A major feature of Bitsy is its limited colour palettes. In fact for a single screen (room) you can only have 3 distinct colours: a background, a standard tile colour, and a sprite colour (for sprites, items, and the avatar). As you might imagine, this can make it a challenge to have everything in a scene be a "realistic" colour and it becomes correspondingly harder to rely on colour as a way explain to a player what something is, you really need to rely on (8x8 pixel) form.
 
-![](images/bitsy-colours.png)
+![](images/bitsy-colours.png)  
+_Bitsy's colour panel_
 
 Background colours were pretty straightforward since the punishment series has what I think of as quite iconic pastel-ish background colours already established, I just used them. Similarly, the basic tile colour is almost always black, corresponding to the default pixel colour in the original punishment game, which uses black as a kind of nod to images on ancient Greek pottery etc. Things got weird with the sprite colour.
 
@@ -51,7 +52,8 @@ Also visible in the Tantalus scene is a particular feature of Bitsy's sprites - 
 
 One objective I often have when using new tools is to think about the specific kind of world the tool makes possible, the map or reality is has under the hood. So, in the case of Bitsy, I was excited to use the idea of "items" as a specific part of my design. In Bitsy an item is a tile you can walk onto which then displays a message and disappears (as in, you picked it up).
 
-![](images/default-bitsy-item.png)
+![](images/default-bitsy-item.png)  
+_Default Bitsy "item" panel_
 
 In thinking this through, I imagined the ability to use items for a kind of "authenticity" in the telling of the myths, but it was not to be ([ac29f28](https://github.com/pippinbarr/lets-play-ancient-greek-punishment-bitsy-demake/commit/ac29f284f3929d2a5265ce451e08760ff40d59cd)). In particular, I figured I'd be able to make the apple in Tantalus an item as this would have a delightful truth to it: the apple would genuinely be something you could pick up (according to Bitsy's code), you just wouldn't be able to reach it (like Tantalus) (see this [process journal entry](https://github.com/pippinbarr/lets-play-ancient-greek-punishment-bitsy-demake/blob/master/process/process-journal.md#tantalus)). However, it turned out that if the apple was an item it would have to be at least one tile removed from Tantalus (in order for it to be blocked off from him) and, while this was funny, it removed the ability to display a message when Tantalus _tried_ to reach it. Given my anxieties about the representation being pretty hard to decipher (as above), I decided to make the apple a sprite instead, so the player could "bump into it" and see a message about failing to grasp it ([f28008d](https://github.com/pippinbarr/lets-play-ancient-greek-punishment-bitsy-demake/commit/f28008d67ce12e836d2a7fde283fc2ae8ee301d4)). In retrospect I'm not completely certain this was the right call, but it felt like the best move at the time.
 
@@ -65,12 +67,13 @@ A key point of tension between the myths and Bitsy is that the myths naturally i
 
 This is what led to having the avatar in both Sisyphus and Danaids be the actual object of torment rather than a person interacting with those objects. There's no way in Bitsy for an avatar to _push_ anything, so [the only way to move the boulder is to _be_ the boulder](https://github.com/pippinbarr/lets-play-ancient-greek-punishment-bitsy-demake/blob/master/process/process-journal.md#be-the-boulder-you-want-to-see-in-the-world). It's quite nicely philosophical in a way that Camus might approve of? This is also nice in that it pushes the role of Sisyphus much more directly onto the player of the game - you're the one pushing the boulder around with the arrow keys, there's no intermediary. Similarly, in Danaids, you can't have an avatar pick up and transport the water (items don't work for this damnit!), so the avatar _is the water_, which the _player_ then transports to the bathtub.
 
-![](images/danaids-start.png)
+![](images/danaids-start.png)  
+_You are the water in Danaids_
 
 In the other myths, the focus of Bitsy of movement works nicely because the myths focus on some kind of movement through space as their core activity. Zeno, most obvious, is running a race and so must move through space to do so - the standard avatar works well here. Tantalus is involved in a kind of movement when he is _reaching_ for things, so it's not too hard to reinterpret his movement through the water as a "quest" for water (perpetually thwarted by the background effect discussed earlier), and the use of the up arrow beneath the apple is a special case of a _failed_ movement (not permitted because you can't walk onto a sprite) ([cb816c5](https://github.com/pippinbarr/lets-play-ancient-greek-punishment-bitsy-demake/commit/cb816c50ebb0e5e38369dd2aa858576c438fc1c8)). Prometheus is all about failed movement ([0b18f11](https://github.com/pippinbarr/lets-play-ancient-greek-punishment-bitsy-demake/commit/0b18f112169eb04d2cb4f86f25d81065694c5954)), surrounded by invisible sprites that serve as his chains (and deliver messages about the hopelessness of his situation) - here a lack of movement is what is needed and that negation fits into Bitsy's possibilities nicely.
 
-_Prometheus cannot escape_  
-![](images/prometheus-fails.png)
+![](images/prometheus-fails.png)  
+_Prometheus cannot escape_
 
 ## The spacetime continuum
 
