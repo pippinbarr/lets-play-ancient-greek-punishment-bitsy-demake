@@ -9,7 +9,47 @@ _The most basic Bitsy interface_
 
 Bitsy is a web-based tool for making simple 2D games that allow the player to move a character around and between a series of "rooms" (which could represent indoor or outdoor spaces or anything else) and to interact with "items" (by picking them up) and "sprites" (by bumping into them). It's not too much more complicated than that, which makes it a lovely tool for quickly building clear and direct exploration experiences, environmental storytelling, and related forms of play.
 
-In the case of the punishment games, I was most interested in how such a basic set of tools would be able to accommodate the myths in question. In the following, I want to explore this by highlighting each of the key tools in creating a Bitsy game and relating that tool to the specifics of creating representations ancient Greek punishments. In doing so, I most want to direct attention to the relationships that exist between ideas and technologies - how they play nice, and how they fight.
+In the case of the punishment games, I was most interested in how such a basic set of tools would be able to accommodate the myths in question. In the following, I want to explore this by highlighting some of the moments of tension between the ideas I wanted to convey and the specific constraints of Bitsy. In doing so, I want to continue my voyage of thinking about the central relationship between game design and game technology.
+
+## 8x8s and heartbreak
+
+One thing you're confronted with as soon as you start using Bitsy is the serious limitation on making images. Bitsy's games are "tile based", composed of a collection of 8x8 pixel tiles. Your avatar is one tile, sprites are each one tile, and so on. 8x8 is not a lot of space to work with.
+
+![](images/bitsy-painting.png)
+
+The most obvious thus came in trying to use this tool to represent the key elements in each myth, particularly in terms of legibility. Representing any complex form in 8x8 is just not especially realistic, so there was a real need to simply the images of the game, often shooting for something more iconic than "realistic". It's very possible to draw a little "person" shape (which I did for Zeno, Tantalus, and Prometheus), but more detailed compositions like a person pushing a boulder just won't fly - not enough pixels. This was thus a big factor behind the decision to make the avatar in Sisyphus be just the boulder itself, for instance (more on this later).
+
+Along with the avatar issue, there's the need to represent environmental elements such as rocks or clouds, etc. There was a part of me that wanted the purity of one object per tile, as there's a kind of atomic truth to that. However, it just isn't possible to draw a very convincing cloud in 8x8. The solution, much more magnificently demonstrated by more experience and talented Bitsy authors, is to compose complex scenery out of multiple tiles. It makes the actual management of tiles a bit of a hellscape, but it means you've got the potential for much more "resolution" in your visual elements. A room is 16x16 tiles, and tiles are 8x8, so the largest possible image you could create would be 128x128 - still smaller than most desktop icons, but enough to make something pretty recognizable. As such, things like the rock in Prometheus are composed of multiple kinds of tiles to allow for a more naturalistic/organic line rather than the hideously blocky early attempts.
+
+![](images/prometheus-rock-progress.png)
+
+Thus, for instance, rather that representing the avatar in Sisyphus as a person pushing a boulder (more on why the boulder is not separate later),
+
+As such, people who make Bitsy games are often geniuses at using the tool to create evocative and complex scenes.
+
+
+- 8x8 (avatars, multi-tile shapes (clouds, rock, bathtub), legibility issues, texture)
+
+## The majesty of minimal colours
+
+- The mystery of colours (Red tantalus -> Evil apple -> white apple, need for clouds changes things, brown rock -> white, background colours from original games, especially potent because of the limit to three)
+
+## 5 items or less
+
+- The failure of items (Sisyphus had to become a boulder, Danaids had to become water, apple had to become a sprite - otherwise not tempting as it would have to be too far)
+
+## I like to move it move it
+
+- Movement (and its restriction, as key interactive elements, has to be saved for the punishment rather than exploration of a larger environment as in standard Bitsy)
+
+## The spacetime continuum
+
+- Space is time (typical Bitsy thing of sometimes using connected rooms to represent a passage of time rather than space, water draining (multi-stage), boulder returning, flag failure, ...) -- see also that Moth to a Flame one
+
+
+
+
+
 
 ## Avatar
 
@@ -42,15 +82,6 @@ In the case of the punishments, this meant that the key action needed to be repr
 
 Alternative structure (because I'm dying of boredom right now)
 
-- The failure of items (Sisyphus had to become a boulder, Danaids had to become water, apple had to become a sprite - otherwise not tempting as it would have to be too far)
-
-- The mystery of colours (Red tantalus -> Evil apple -> white apple, need for clouds changes things, brown rock -> white, background colours from original games)
-
-- Movement (and its restriction, as key interactive elements, has to be saved for the punishment rather than exploration of a larger environment as in standard Bitsy)
-
-- Space is time (typical Bitsy thing of sometimes using connected rooms to represent a passage of time rather than space, water draining (multi-stage), boulder returning, flag failure, ...)
-
-- 8x8 (avatars, multi-tile shapes (clouds, rock, bathtub), legibility issues, texture)
 
 
 ---
